@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Heart, Target, Award, Users, Clock, Leaf } from 'lucide-react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 const About: React.FC = () => {
   return (
@@ -62,11 +63,11 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      {/* Team Members Section */}
+      {/* Team Members Section - Updated to show only 3 square boxes */}
       <section className="py-16 px-4 md:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold mb-12 text-center">FYP Team Members</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {[
               {
                 name: "Alex Johnson",
@@ -85,34 +86,16 @@ const About: React.FC = () => {
                 role: "Full-stack Developer",
                 image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=300",
                 description: "Managed the integration between frontend and backend systems, implemented authentication and user management."
-              },
-              {
-                name: "David Rodriguez",
-                role: "UI/UX Designer",
-                image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?q=80&w=300",
-                description: "Created the user interface designs, wireframes, and visual identity for the VolunteerConnect platform."
-              },
-              {
-                name: "Emily Park",
-                role: "Thesis Writer",
-                image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=300",
-                description: "Documented the research methodology, findings, and recommendations for the volunteering platform model."
-              },
-              {
-                name: "James Wilson",
-                role: "Project Manager",
-                image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=300",
-                description: "Coordinated the team efforts, managed timelines, and ensured successful project completion."
               }
             ].map((member, index) => (
               <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
+                <AspectRatio ratio={1/1} className="bg-muted">
+                  <Avatar className="h-full w-full rounded-none">
+                    <AvatarImage src={member.image} alt={member.name} className="object-cover" />
+                    <AvatarFallback className="text-4xl">{member.name.charAt(0)}</AvatarFallback>
+                  </Avatar>
+                </AspectRatio>
                 <CardContent className="p-6 flex flex-col items-center text-center">
-                  <div className="mb-6">
-                    <Avatar className="h-32 w-32 border-4 border-primary/20">
-                      <AvatarImage src={member.image} alt={member.name} />
-                      <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
-                    </Avatar>
-                  </div>
                   <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
                   <p className="text-primary font-medium mb-4">{member.role}</p>
                   <p className="text-gray-600 text-sm">{member.description}</p>
