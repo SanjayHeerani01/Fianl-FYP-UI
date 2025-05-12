@@ -74,7 +74,7 @@ const About: React.FC = () => {
                 {
                   name: "Sanjay",
                   role: "Full-stack Developer",
-                  image: "src/images/ada2.jpg",
+                  image: "src/images/Sanjay.jpg",
                   description: "Sanjay is a talented full stack developer with a strong background in [specific technologies or areas of focus]. They worked closely with Alina to integrate key features and deliver a high-quality solution.\"\n" +
                       "- \"Sanjay played a crucial role in [specific aspect of the project], leveraging their technical expertise to overcome challenges and drive progress."
                 },
