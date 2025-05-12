@@ -3,6 +3,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Heart, Target, Award, Users, Clock, Leaf } from 'lucide-react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { motion } from 'framer-motion';
+import { HoverCard, HoverCardTrigger, HoverCardContent } from '@/components/ui/hover-card';
 
 const About: React.FC = () => {
   return (
@@ -63,11 +65,11 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      {/* Team Members Section - Updated to show only 3 square boxes */}
+      {/* Team Members Section - Updated with animations */}
       <section className="py-16 px-4 md:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold mb-12 text-center">FYP Team Members</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 max-w-4xl mx-auto">
             {[
               {
                 name: "Alex Johnson",
@@ -88,19 +90,56 @@ const About: React.FC = () => {
                 description: "Managed the integration between frontend and backend systems, implemented authentication and user management."
               }
             ].map((member, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
-                <AspectRatio ratio={1/1} className="bg-muted">
-                  <Avatar className="h-full w-full rounded-none">
-                    <AvatarImage src={member.image} alt={member.name} className="object-cover" />
-                    <AvatarFallback className="text-4xl">{member.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                </AspectRatio>
-                <CardContent className="p-6 flex flex-col items-center text-center">
-                  <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
-                  <p className="text-primary font-medium mb-4">{member.role}</p>
-                  <p className="text-gray-600 text-sm">{member.description}</p>
-                </CardContent>
-              </Card>
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                whileHover={{ 
+                  scale: 1.05,
+                  transition: { duration: 0.2 }
+                }}
+              >
+                <HoverCard>
+                  <HoverCardTrigger asChild>
+                    <Card className="overflow-hidden cursor-pointer shadow-md transition-all duration-300 hover:shadow-xl">
+                      <AspectRatio ratio={1/1} className="bg-muted relative overflow-hidden group">
+                        <Avatar className="h-full w-full rounded-none">
+                          <AvatarImage 
+                            src={member.image} 
+                            alt={member.name} 
+                            className="object-cover transition-transform duration-500 group-hover:scale-110" 
+                          />
+                          <AvatarFallback className="text-4xl">{member.name.charAt(0)}</AvatarFallback>
+                        </Avatar>
+                        <div className="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                          <p className="text-white font-medium text-lg transform scale-0 group-hover:scale-100 transition-transform duration-300">
+                            {member.role}
+                          </p>
+                        </div>
+                      </AspectRatio>
+                      <CardContent className="p-6 flex flex-col items-center text-center">
+                        <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
+                        <p className="text-primary font-medium mb-4">{member.role}</p>
+                        <p className="text-gray-600 text-sm">{member.description}</p>
+                      </CardContent>
+                    </Card>
+                  </HoverCardTrigger>
+                  <HoverCardContent className="w-80 p-4">
+                    <div className="flex justify-between space-x-4">
+                      <Avatar className="h-16 w-16">
+                        <AvatarImage src={member.image} />
+                        <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <h4 className="text-lg font-semibold">{member.name}</h4>
+                        <p className="text-primary font-medium">{member.role}</p>
+                        <p className="text-sm text-muted-foreground mt-2">{member.description}</p>
+                      </div>
+                    </div>
+                  </HoverCardContent>
+                </HoverCard>
+              </motion.div>
             ))}
           </div>
         </div>
