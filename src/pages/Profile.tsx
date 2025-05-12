@@ -358,7 +358,7 @@ const Profile: React.FC = () => {
             <Tabs defaultValue="experience">
               <TabsList className="mb-4">
                 <TabsTrigger value="experience">Experience</TabsTrigger>
-                <TabsTrigger value="portfolio">Portfolio</TabsTrigger>
+                {/* <TabsTrigger value="portfolio">Portfolio</TabsTrigger> */}
                 <TabsTrigger value="achievements">Achievements</TabsTrigger>
               </TabsList>
               
@@ -401,7 +401,7 @@ const Profile: React.FC = () => {
                 </Card>
               </TabsContent>
               
-              <TabsContent value="portfolio">
+              {/* <TabsContent value="portfolio">
                 <Card>
                   <CardContent className="p-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -450,7 +450,7 @@ const Profile: React.FC = () => {
                     </div>
                   </CardContent>
                 </Card>
-              </TabsContent>
+              </TabsContent> */}
               
               <TabsContent value="achievements">
                 <Card>

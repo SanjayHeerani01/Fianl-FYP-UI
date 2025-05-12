@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -14,34 +13,54 @@ const SignIn: React.FC = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const location = useLocation();
-  
-  // Get the user type from URL query parameters
+
   const queryParams = new URLSearchParams(location.search);
   const userTypeParam = queryParams.get('type');
   const defaultTab = userTypeParam === 'volunteer' || userTypeParam === 'organization' ? userTypeParam : 'volunteer';
 
-  const handleSignIn = (userType: string, e: React.FormEvent) => {
+  const handleSignIn = async (userType: string, e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    
-    // Simulate authentication process
-    setTimeout(() => {
-      setLoading(false);
-      
-      // In a real application, you would authenticate the user here
-      // For now, we'll just show a toast and redirect
+
+    try {
+      const response = await fetch('http://localhost:8081/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Invalid credentials');
+      }
+
+      const data = await response.json();
+
+      // Save token to localStorage
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('userType', userType);
+
       toast({
         title: "Signed in successfully!",
         description: `Welcome back, ${userType}!`,
       });
-      
-      // Redirect based on user type
+
+      // Navigate based on userType
       if (userType === 'volunteer') {
         navigate('/dashboard');
       } else {
         navigate('/requests');
       }
-    }, 1500);
+    } catch (error: any) {
+      toast({
+        title: 'Login Failed',
+        description: error.message || 'Something went wrong. Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -53,14 +72,14 @@ const SignIn: React.FC = () => {
             Sign in to your account to continue your journey
           </p>
         </div>
-        
+
         <Card className="overflow-hidden shadow-lg animate-fade-in">
           <Tabs defaultValue={defaultTab} className="w-full">
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="volunteer">Volunteer</TabsTrigger>
               <TabsTrigger value="organization">Organization</TabsTrigger>
             </TabsList>
-            
+
             <TabsContent value="volunteer" className="p-0">
               <CardContent className="p-6">
                 <form onSubmit={(e) => handleSignIn('volunteer', e)} className="space-y-4">
@@ -109,7 +128,7 @@ const SignIn: React.FC = () => {
                 </form>
               </CardContent>
             </TabsContent>
-            
+
             <TabsContent value="organization" className="p-0">
               <CardContent className="p-6">
                 <form onSubmit={(e) => handleSignIn('organization', e)} className="space-y-4">
@@ -160,7 +179,7 @@ const SignIn: React.FC = () => {
             </TabsContent>
           </Tabs>
         </Card>
-        
+
         <div className="text-center">
           <Link to="/" className="text-sm text-gray-600 hover:text-primary">
             Return to Home
