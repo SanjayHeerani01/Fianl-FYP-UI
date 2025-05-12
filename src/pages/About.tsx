@@ -78,14 +78,7 @@ const About: React.FC = () => {
                   description: "Sanjay is a talented full stack developer with a strong background in [specific technologies or areas of focus]. They worked closely with Alina to integrate key features and deliver a high-quality solution.\"\n" +
                       "- \"Sanjay played a crucial role in [specific aspect of the project], leveraging their technical expertise to overcome challenges and drive progress."
                 },
-                {
-                  name: "Alina",
-                  role: "Full-stack Developer",
-                  image: "src/images/alina.jpg",
-                  description: "Alina is a skilled full stack developer who brought expertise in [specific technologies or areas of focus]. Their contributions to the project's architecture and development were invaluable.\"\n" +
-                      "- \"Alina developed the front-end/back-end of our application, ensuring a seamless user experience and robust functionality."
-                },
-                {
+                 {
                   name: "Muskan",
                   role: "",
                   image: "src/images/muskan2.jpg",
@@ -93,6 +86,14 @@ const About: React.FC = () => {
                       "- \"With a strong foundation in research and analysis from their thesis, Muskan brought valuable insights and expertise to our team, enhancing our project's quality and impact.\"\n"
 
                 }
+                {
+                  name: "Alina",
+                  role: "Full-stack Developer",
+                  image: "src/images/alina.jpg",
+                  description: "Alina is a skilled full stack developer who brought expertise in [specific technologies or areas of focus]. Their contributions to the project's architecture and development were invaluable.\"\n" +
+                      "- \"Alina developed the front-end/back-end of our application, ensuring a seamless user experience and robust functionality."
+                },
+               
               ].map((member, index) => (
                   <motion.div
                       key={index}
