@@ -3,6 +3,7 @@ import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import ChatWidget from '../chat/ChatWidget';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -17,6 +18,7 @@ const Layout: React.FC<LayoutProps> = ({ children, hideFooter = false }) => {
         <main>{children}</main>
       </ScrollArea>
       {!hideFooter && <Footer />}
+      <ChatWidget />
     </div>
   );
 };
