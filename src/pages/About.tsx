@@ -85,7 +85,7 @@ const About: React.FC = () => {
                   description: "Muskan contributed significantly to our project, leveraging the research and skills developed during their thesis work to drive innovation and excellence.\"\n" +
                       "- \"With a strong foundation in research and analysis from their thesis, Muskan brought valuable insights and expertise to our team, enhancing our project's quality and impact.\"\n"
 
-                }
+                },
                 {
                   name: "Alina",
                   role: "Full-stack Developer",
