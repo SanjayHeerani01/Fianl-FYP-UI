@@ -6,8 +6,27 @@ import { Textarea } from '@/components/ui/textarea';
 import { Avatar } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Award, Calendar, MapPin, Mail, Phone, Briefcase, Heart, Star, MessageSquare } from 'lucide-react';
+import { 
+  Award, 
+  Calendar, 
+  MapPin, 
+  Mail, 
+  Phone, 
+  Briefcase, 
+  Heart, 
+  Star, 
+  MessageSquare, 
+  Clock,
+  Check
+} from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from "@/components/ui/select";
 
 const Profile: React.FC = () => {
   const [isEditing, setIsEditing] = useState(false);

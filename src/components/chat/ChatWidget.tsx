@@ -15,7 +15,7 @@ interface Message {
   timestamp: Date;
 }
 
-const initialMessage = {
+const initialMessage: Message = {
   id: 1,
   text: "Hi there! How can I help you with volunteering today?",
   sender: 'bot',
