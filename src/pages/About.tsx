@@ -113,7 +113,7 @@ const About: React.FC = () => {
                               <AvatarImage
                                   src={member.image}
                                   alt={member.name}
-                                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                  className="object-cover object-top transition-transform duration-500 group-hover:scale-110"
                               />
                               <AvatarFallback className="text-4xl">{member.name.charAt(0)}</AvatarFallback>
                             </Avatar>
