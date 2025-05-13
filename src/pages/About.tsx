@@ -89,7 +89,7 @@ const About: React.FC = () => {
                 {
                   name: "Alina",
                   role: "Full-stack Developer",
-                  image: "src/images/alina.jpg",
+                  image: "src/images/aleena.jpg",
                   description: "Alina is a skilled full stack developer who brought expertise in [specific technologies or areas of focus]. Their contributions to the project's architecture and development were invaluable.\"\n" +
                       "- \"Alina developed the front-end/back-end of our application, ensuring a seamless user experience and robust functionality."
                 },
